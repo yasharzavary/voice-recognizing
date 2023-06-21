@@ -73,6 +73,14 @@ exitButton.bind('<Leave>', lambda event: exitButton.config(bg='#f9f6e9'))
 exitButton.bind('<Button>', lambda event: mainRoot.destroy())
 exitButton.pack()
 
+
+# copy right frame
+copyrightFrame=Frame(master=mainRoot, bg='#6186fa', width=1000, height=40)
+copyrightFrame.pack(side='bottom')
+copyrightFrame.pack_propagate(0)
+
+# my upfactor copy right label
+copyrightLabel=Label(master=copyrightFrame, text='copyright@2023 upfactor', bg='#6186fa')
+copyrightLabel.pack(side='right')
+
 mainRoot.mainloop()
-
-
