@@ -122,6 +122,41 @@ def singUp(event):
     sNameEntry=Entry(master=sNameFrame)
     sNameEntry.pack(side='right')
     
+     # user name block frame
+    uNameFrame=Frame(master=singUpRoot)
+    uNameFrame.pack(side='top')
+
+    # user name label for fist block
+    uNameLabel=Label(master=uNameFrame, text='user name:', fg='#5551c9')
+    uNameLabel.pack(side='left')
+
+    # user name Entry
+    uNameEntry=Entry(master=uNameFrame)
+    uNameEntry.pack(side='right')
+    
+     # password block frame
+    passFrame=Frame(master=singUpRoot)
+    passFrame.pack(side='top')
+
+    # password label for fist block
+    passLabel=Label(master=passFrame, text='password: ', fg='#5551c9')
+    passLabel.pack(side='left')
+
+    # password Entry
+    passEntry=Entry(master=passFrame)
+    passEntry.pack(side='right')
+    
+    # cellPhone block frame
+    cellFrame=Frame(master=singUpRoot)
+    cellFrame.pack(side='top')
+
+    # cellPhone label for fist block
+    cellLabel=Label(master=cellFrame, text='cell phone number: ', fg='#5551c9')
+    cellLabel.pack(side='left')
+
+    # cellPhone Entry
+    cellEntry=Entry(master=cellFrame)
+    cellEntry.pack(side='right')
     
     singUpRoot.mainloop()
     
