@@ -55,7 +55,16 @@ passLabel.pack(side='left')
 passEntry=Entry(master=passFrame)
 passEntry.pack(side='right')
  
+# my control and sign in part (main program goes here)
+def singIn(event):
+    pass 
 
+# my sign in button with in and out changing color
+signInbutton=Button(master=mainRoot, text='sign in', bg='#55ccc9')
+signInbutton.bind('<Enter>', lambda event: signInbutton.config(bg='#55f6c9'))
+signInbutton.bind('<Leave>', lambda event: signInbutton.config(bg='#55ccc9'))
+signInbutton.bind('<Button>', singIn)
+signInbutton.pack()
 
 
 mainRoot.mainloop()
