@@ -85,4 +85,25 @@ copyrightFrame.pack_propagate(0)
 copyrightLabel=Label(master=copyrightFrame, text='copyright@2023 upfactor', bg='#6186fa')
 copyrightLabel.pack(side='right')
 
+# sign up frame
+signUpFrame=Frame(master=mainRoot, width=1000, height=60)
+signUpFrame.pack(side='bottom')
+signUpFrame.pack_propagate(0)
+
+# label for sing up part
+singUpLabel=Label(master=signUpFrame, text='you don\'t have a account?')
+singUpLabel.pack(side='left')
+
+# my sign up control and save part
+def singUp(event):
+    pass
+
+# sign up button part
+signUpbutton=Button(master=signUpFrame, text='sign up', bg='#f9f6e9')
+signUpbutton.bind('<Enter>', lambda event: signUpbutton.config(bg='#c4f53a'))
+signUpbutton.bind('<Leave>', lambda event: signUpbutton.config(bg='#f9f6e9'))
+signUpbutton.bind('<Button>', singUp)
+signUpbutton.pack(side='left')
+
+
 mainRoot.mainloop()
