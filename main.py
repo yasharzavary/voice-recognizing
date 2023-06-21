@@ -60,12 +60,19 @@ def singIn(event):
     pass 
 
 # my sign in button with in and out changing color
-signInbutton=Button(master=mainRoot, text='sign in', bg='#55ccc9')
-signInbutton.bind('<Enter>', lambda event: signInbutton.config(bg='#55f6c9'))
-signInbutton.bind('<Leave>', lambda event: signInbutton.config(bg='#55ccc9'))
+signInbutton=Button(master=mainRoot, text='sign in', bg='#f9f6e9')
+signInbutton.bind('<Enter>', lambda event: signInbutton.config(bg='#c4f53a'))
+signInbutton.bind('<Leave>', lambda event: signInbutton.config(bg='#f9f6e9'))
 signInbutton.bind('<Button>', singIn)
 signInbutton.pack()
 
+# exit button
+exitButton=Button(master=mainRoot, text=' Exit ', bg='#f9f6e9')
+exitButton.bind('<Enter>', lambda event: exitButton.config(bg='#c4f53a'))
+exitButton.bind('<Leave>', lambda event: exitButton.config(bg='#f9f6e9'))
+exitButton.bind('<Button>', lambda event: mainRoot.destroy())
+exitButton.pack()
 
 mainRoot.mainloop()
+
 
