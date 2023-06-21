@@ -96,8 +96,21 @@ singUpLabel.pack(side='left')
 
 # my sign up control and save part
 def singUp(event):
-    pass
+    # my sign up root
+    singUpRoot=Tk()
+    
+    # set geometry of main root and set resize False
+    singUpRoot.geometry('%dx%d+%d+%d'%(700,500, 2500, 1000))
+    singUpRoot.resizable(width=False, height=False)
 
+    # set title and icon of the product
+    singUpRoot.title('sign up to sadoos')
+    singUpRoot.iconbitmap('icons\signUpRoot.ico')
+    
+
+    
+    singUpRoot.mainloop()
+    
 # sign up button part
 signUpbutton=Button(master=signUpFrame, text='sign up', bg='#f9f6e9')
 signUpbutton.bind('<Enter>', lambda event: signUpbutton.config(bg='#c4f53a'))
