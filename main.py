@@ -110,6 +110,19 @@ def singUp(event):
     welcomeLabel=Label(master=singUpRoot, text='hi! please fill the blocks to sing up')
     welcomeLabel.pack(side='top')
     
+    # full name block frame
+    sNameFrame=Frame(master=singUpRoot)
+    sNameFrame.pack(side='top')
+
+    # full name label for fist block
+    sNameLabel=Label(master=sNameFrame, text='full name: ', fg='#5551c9')
+    sNameLabel.pack(side='left')
+
+    # full name Entry
+    sNameEntry=Entry(master=sNameFrame)
+    sNameEntry.pack(side='right')
+    
+    
     singUpRoot.mainloop()
     
 # sign up button part
