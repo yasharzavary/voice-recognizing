@@ -11,6 +11,7 @@ from tkinter import *
 from tkinter import messagebox
 import pyautogui
 from re import search
+from MySQLdb import Connect, Error
 
 # my main root
 mainRoot=Tk()
@@ -121,7 +122,12 @@ def singUp(event):
         elif len(cellPhone) != 10 or search(r'[^0-9]', cellPhone):
             messagebox.showerror('Error', 'cell phone is invalid')
         else:
-            pass
+            try:
+                with Connect(host='127.0.0.11', password='Yasharzavary360', user="root", database='sadoos') as conn:
+                    pass
+            except Error as err:
+                messagebox.showerror('Error', 'we can\'t acces to server now')
+                print(err)
         
     # my sign up root
     singUpRoot=Tk()
