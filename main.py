@@ -96,6 +96,8 @@ singUpLabel.pack(side='left')
 
 # my sign up control and save part
 def singUp(event):
+    def control(event):
+        pass
     # my sign up root
     singUpRoot=Tk()
     
@@ -157,6 +159,12 @@ def singUp(event):
     # cellPhone Entry
     cellEntry=Entry(master=cellFrame)
     cellEntry.pack(side='right')
+    
+    signUpButton=Button(master=singUpRoot, text='sign up', bg='#f9f6e9')
+    signUpButton.bind('<Enter>', lambda event: signUpButton.config(bg='#c4f53a'))
+    signUpButton.bind('<Leave>', lambda event: signUpButton.config(bg='#f9f6e9'))
+    signUpButton.bind('<Button>', control)
+    signUpButton.pack()
     
     singUpRoot.mainloop()
     
