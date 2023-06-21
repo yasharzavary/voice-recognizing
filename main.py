@@ -1,9 +1,11 @@
 # created by: yashar zavary rezaie
 """
+    developer = yashar zavary rezaie
     voice recognition:
     system will recognize voice and answer specific answer to the User 
     it will check words in the sentence of the user and select primary words and get specific answer
-    
+    we use tkinter in this project and database for save all data of the users
+    get the voice and analize it with some python libraries like wave
 """
 from tkinter import *
 import pyautogui
