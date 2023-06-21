@@ -8,7 +8,10 @@
     get the voice and analize it with some python libraries like wave
 """
 from tkinter import *
+from tkinter import messagebox
 import pyautogui
+
+
 # my main root
 mainRoot=Tk()
 # size of the main root 
@@ -97,7 +100,13 @@ singUpLabel.pack(side='left')
 # my sign up control and save part
 def singUp(event):
     def control(event):
-        pass
+        # get data from blocks
+        fullName=sNameEntry.get()
+        userName=uNameEntry.get()
+        password=passEntry.get()
+        cellPhone=cellEntry.get()
+        
+
     # my sign up root
     singUpRoot=Tk()
     
