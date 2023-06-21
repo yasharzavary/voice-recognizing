@@ -107,7 +107,8 @@ def singUp(event):
     singUpRoot.title('sign up to sadoos')
     singUpRoot.iconbitmap('icons\signUpRoot.ico')
     
-
+    welcomeLabel=Label(master=singUpRoot, text='hi! please fill the blocks to sing up')
+    welcomeLabel.pack(side='top')
     
     singUpRoot.mainloop()
     
