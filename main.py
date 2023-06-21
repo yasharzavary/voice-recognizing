@@ -10,7 +10,7 @@
 from tkinter import *
 from tkinter import messagebox
 import pyautogui
-
+from re import search
 
 # my main root
 mainRoot=Tk()
@@ -106,7 +106,23 @@ def singUp(event):
         password=passEntry.get()
         cellPhone=cellEntry.get()
         
-
+        
+        # control part
+        if fullName == "" or userName=="" or password=="" or cellPhone=="":
+            messagebox.showerror('Error', 'blocks can\'t be empty')
+        elif search(r'\d', fullName):
+            messagebox.showerror('Error', 'full name can\'t have number in')
+        elif len(password) <8:
+            messagebox.showerror('Error', 'password must be at least 8 characters')
+        elif not search(r'\w', password):
+            messagebox.showerror('Error', 'password must have A-Z symbols')
+        elif not search(r'[!@#$%^&*]', password):
+            messagebox.showerror('Error', 'password must have at least one @#!$%^&*')
+        elif len(cellPhone) != 10 or search(r'[^0-9]', cellPhone):
+            messagebox.showerror('Error', 'cell phone is invalid')
+        else:
+            pass
+        
     # my sign up root
     singUpRoot=Tk()
     
@@ -162,7 +178,7 @@ def singUp(event):
     cellFrame.pack(side='top')
 
     # cellPhone label for fist block
-    cellLabel=Label(master=cellFrame, text='cell phone number: ', fg='#5551c9')
+    cellLabel=Label(master=cellFrame, text='cell phone number: +98', fg='#5551c9')
     cellLabel.pack(side='left')
 
     # cellPhone Entry
