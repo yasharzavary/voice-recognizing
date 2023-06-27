@@ -123,8 +123,41 @@ def singUp(event):
             messagebox.showerror('Error', 'cell phone is invalid')
         else:
             try:
+                # data base connection
                 with Connect(host='127.0.0.11', password='Yasharzavary360', user="root", database='sadoos') as conn:
-                    pass
+                    # cursor the database
+                    databaseCursor=conn.cursor()
+                    # select name and pass from database
+                    databaseCursor.execute('select fullName,cellPhoneNumber,userName from sadoosUser')
+                    # one variable for set that we found similar person or not
+                    cantFound=True
+                    # loop on the database and get data
+                    for data in databaseCursor:
+                        # if found the cellphone number
+                        if cellPhone==data[1]:
+                            messagebox.showerror('Error', 'this cellphone have account')
+                            cantFound=False
+                            break
+                        # if found the user name 
+                        elif userName==data[2]:
+                            cantFound=False
+                            messagebox.showerror('Error', 'this user name have a account')
+                            break
+                    # if we don't have that username, we add it to the database
+                    if cantFound:
+                        # select max number of primary key in database
+                        databaseCursor.execute('select max(userCode) from sadoosUser')
+                        # get the max ID
+                        for code in databaseCursor:
+                            maxId=code
+                        # make person tuple for adding to the database
+                        person=(maxId[0]+1, fullName, userName, str(cellPhone), str(password))
+                        # adding part
+                        databaseCursor.execute('''insert into sadoosUser(userCode, fullName, userName, cellPhoneNumber, userPassword)
+                                                   values(%s,%s,%s,%s,%s)''', person)           
+                        messagebox.showinfo('sign up', 'you sign up in sadoos!')              
+                    conn.commit()
+            # if one error happend we can except it
             except Error as err:
                 messagebox.showerror('Error', 'we can\'t acces to server now')
                 print(err)
