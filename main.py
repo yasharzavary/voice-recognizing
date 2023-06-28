@@ -15,6 +15,9 @@ from MySQLdb import Connect, Error
 import speech_recognition as sr
 import pyaudio
 from googletrans import Translator
+from threading import Timer
+import json
+import pyttsx3
 
 # my main root
 mainRoot=Tk()
@@ -68,6 +71,28 @@ passEntry.pack(side='right')
 def singIn(event):
     # my speak and answer
     def mainMenu():
+        def betterAnswer(transText):
+            same=0
+            betterpercent=0
+            temp=0
+            betterDic=None
+            with open('questions.json', 'r') as jsonFile:
+                quesList=json.load(jsonFile)
+            for ques in quesList:
+                for keys in ques.values():
+                    if keys in transText:
+                        temp+=1
+                if temp > betterpercent:
+                    betterpercent=ques
+                    betterpercent=temp
+                    same=0
+                elif temp==betterpercent:
+                    same+=1
+            if same!=0:
+                pass
+            else:
+                pass
+            
         def speak(event):
             translateAgent=Translator()
             agent=sr.Recognizer()
@@ -82,9 +107,8 @@ def singIn(event):
             else:
                 writeLabel.config(text=text)
                 transText=translateAgent.translate(text)
-                print(transText.text)
-                
-                            
+                betterAnswer(transText)
+                     
         mainMenuRoot=Tk()
         mainMenuRoot.title('workPlace')
         w=600
@@ -93,6 +117,9 @@ def singIn(event):
         y=(screenh/2) - (h/2)
         mainMenuRoot.geometry('%dx%d+%d+%d'%(w,h,x,y))
         mainMenuRoot.resizable(width=False, height=False)
+        
+        welcomeLabel=Label(master=mainMenuRoot, text='Hi\nplease press speak button and say your problem')
+        welcomeLabel.pack(side='top')
         
         writeFrame=Frame(master=mainMenuRoot, width=600, height=50, bg='#C0C0C0')
         writeFrame.pack(side='bottom')          
