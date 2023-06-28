@@ -79,19 +79,27 @@ def singIn(event):
             with open('questions.json', 'r') as jsonFile:
                 quesList=json.load(jsonFile)
             for ques in quesList:
+                temp=0
                 for keys in ques.values():
                     if keys in transText:
                         temp+=1
                 if temp > betterpercent:
-                    betterpercent=ques
+                    betterDic=ques
                     betterpercent=temp
                     same=0
                 elif temp==betterpercent:
                     same+=1
-            if same!=0:
-                pass
+            engine=pyttsx3.init()
+            if betterpercent < 2:
+                engine.say("i can't find a good answer for your question")
+            elif same!=0:
+                engine.say("i can't unserstand, you mean peugeot 206 or 207?")
             else:
-                pass
+                engine.say("this questions key words is: ")
+                for name in betterDic.values():
+                    engine.say(name)
+            engine.runAndWait()
+                
             
         def speak(event):
             translateAgent=Translator()
@@ -107,11 +115,12 @@ def singIn(event):
             else:
                 writeLabel.config(text=text)
                 transText=translateAgent.translate(text)
-                betterAnswer(transText)
+                print(transText.text.lower())
+                betterAnswer(transText.text.lower())
                      
         mainMenuRoot=Tk()
         mainMenuRoot.title('workPlace')
-        w=600
+        w=800
         h=600
         x=(screenW/2) - (w/2)
         y=(screenh/2) - (h/2)
@@ -121,7 +130,7 @@ def singIn(event):
         welcomeLabel=Label(master=mainMenuRoot, text='Hi\nplease press speak button and say your problem')
         welcomeLabel.pack(side='top')
         
-        writeFrame=Frame(master=mainMenuRoot, width=600, height=50, bg='#C0C0C0')
+        writeFrame=Frame(master=mainMenuRoot, width=800, height=50, bg='#C0C0C0')
         writeFrame.pack(side='bottom')          
         writeFrame.pack_propagate(0)
         
