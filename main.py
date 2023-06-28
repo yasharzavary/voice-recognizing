@@ -14,6 +14,7 @@ from re import search
 from MySQLdb import Connect, Error
 import speech_recognition as sr
 import pyaudio
+from googletrans import Translator
 
 # my main root
 mainRoot=Tk()
@@ -68,6 +69,7 @@ def singIn(event):
     # my speak and answer
     def mainMenu():
         def speak(event):
+            translateAgent=Translator()
             agent=sr.Recognizer()
             try:      
                 with sr.Microphone() as source:
@@ -79,6 +81,8 @@ def singIn(event):
                 print(err)
             else:
                 writeLabel.config(text=text)
+                transText=translateAgent.translate(text)
+                print(transText.text)
                 
                             
         mainMenuRoot=Tk()
