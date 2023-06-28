@@ -65,6 +65,8 @@ passEntry.pack(side='right')
 def singIn(event):
     # my speak and answer
     def mainMenu():
+        def speak(event):
+            pass
         mainMenuRoot=Tk()
         mainMenuRoot.title('workPlace')
         w=600
@@ -72,6 +74,17 @@ def singIn(event):
         x=(screenW/2) - (w/2)
         y=(screenh/2) - (h/2)
         mainMenuRoot.geometry('%dx%d+%d+%d'%(w,h,x,y))
+        mainMenuRoot.resizable(width=False, height=False)
+        
+        writeFrame=Frame(master=mainMenuRoot, width=600, height=50, bg='#C0C0C0')
+        writeFrame.pack(side='bottom')          
+        writeFrame.pack_propagate(0)
+        
+        collectButton=Button(master=writeFrame, text='speak')
+        collectButton.bind('<Button', speak)
+        collectButton.pack(side='right')
+
+
         
         mainMenuRoot.mainloop()
     # get username and password to sign in
