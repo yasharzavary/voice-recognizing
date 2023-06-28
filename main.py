@@ -63,8 +63,37 @@ passEntry.pack(side='right')
  
 # my control and sign in part (main program goes here)
 def singIn(event):
-    pass 
-
+    # my speak and answer
+    def mainMenu():
+        pass
+    # get username and password to sign in
+    inputUserName=nameEntry.get()
+    inputPassword=passEntry.get()
+    # control that name and password isn't empty
+    if inputUserName=="" or inputPassword=="":
+        messagebox.showerror('Error', 'blocks can\'t be empty')
+    else:
+        try:
+            with Connect(password='Yasharzavary360', user="root", database='sadoos', host='127.0.0.11') as conn:
+                # set the cursor
+                databaseAgent=conn.cursor()
+                itIsTrue=False
+                databaseAgent.execute('select userName, userPassword from sadoosUser')
+                # read each person data
+                for person in databaseAgent:
+                    # control the name and password
+                    if person[0]==inputUserName and person[1]==inputPassword:
+                        itIsTrue=True      
+        # if we have server error
+        except Error as err:
+            messagebox.showerror('server error', 'we can\'t connect to server now')
+            print(err)
+        else:
+            if itIsTrue:
+                mainMenu()
+            else:
+                messagebox.showerror('Error', 'password or username is incorrect')
+        
 # my sign in button with in and out changing color
 signInbutton=Button(master=mainRoot, text='sign in', bg='#f9f6e9')
 signInbutton.bind('<Enter>', lambda event: signInbutton.config(bg='#c4f53a'))
