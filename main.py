@@ -65,7 +65,15 @@ passEntry.pack(side='right')
 def singIn(event):
     # my speak and answer
     def mainMenu():
-        pass
+        mainMenuRoot=Tk()
+        mainMenuRoot.title('workPlace')
+        w=600
+        h=600
+        x=(screenW/2) - (w/2)
+        y=(screenh/2) - (h/2)
+        mainMenuRoot.geometry('%dx%d+%d+%d'%(w,h,x,y))
+        
+        mainMenuRoot.mainloop()
     # get username and password to sign in
     inputUserName=nameEntry.get()
     inputPassword=passEntry.get()
@@ -77,6 +85,7 @@ def singIn(event):
             with Connect(password='Yasharzavary360', user="root", database='sadoos', host='127.0.0.11') as conn:
                 # set the cursor
                 databaseAgent=conn.cursor()
+                # if username and password be true, change this variable
                 itIsTrue=False
                 databaseAgent.execute('select userName, userPassword from sadoosUser')
                 # read each person data
@@ -90,6 +99,7 @@ def singIn(event):
             print(err)
         else:
             if itIsTrue:
+                #  main menu of program
                 mainMenu()
             else:
                 messagebox.showerror('Error', 'password or username is incorrect')
