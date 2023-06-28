@@ -12,6 +12,8 @@ from tkinter import messagebox
 import pyautogui
 from re import search
 from MySQLdb import Connect, Error
+import speech_recognition as sr
+import pyaudio
 
 # my main root
 mainRoot=Tk()
@@ -66,7 +68,19 @@ def singIn(event):
     # my speak and answer
     def mainMenu():
         def speak(event):
-            pass
+            agent=sr.Recognizer()
+            try:      
+                with sr.Microphone() as source:
+                    agent.pause_threshold=1
+                    audio=agent.listen(source)
+                    text=agent.recognize_google(audio, language='fa-IR')  
+            except Exception as err:
+                messagebox.showerror('Error', 'speech analize have problem, please try again in silent place')
+                print(err)
+            else:
+                writeLabel.config(text=text)
+                
+                            
         mainMenuRoot=Tk()
         mainMenuRoot.title('workPlace')
         w=600
@@ -80,8 +94,11 @@ def singIn(event):
         writeFrame.pack(side='bottom')          
         writeFrame.pack_propagate(0)
         
+        writeLabel=Label(master=writeFrame,text="", bg='#C0C0C0')
+        writeLabel.pack(side='left')
+        
         collectButton=Button(master=writeFrame, text='speak')
-        collectButton.bind('<Button', speak)
+        collectButton.bind('<Button>', speak)
         collectButton.pack(side='right')
 
 
